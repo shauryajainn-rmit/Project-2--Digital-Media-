@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment 2: Digital Icons</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  body {
+    background-color: #eef1f0;
+
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 4vw, 3rem);
+    width: min(90vw, 90vh, 720px);
+  }
+
+  .icon {
+    aspect-ratio: 1 / 1;
+    display: block;
+    width: 100%;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+
+  
+  }
+
+  .icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none; 
+    transition: transform 0.15s ease-out;
+  }
+
+  .icon:hover img,
+  .icon:focus-visible img {
+    transform: scale(1.08);
+  }
+
+  .icon:active img {
+    transform: scale(0.95);
+  }
+
+  .icon:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+  }
+</style>
+</head>
+<body>
+
+
+<div class="icon-grid">
+
+  <button class="icon" aria-label="Icon 1">
+    <img
+      src="assets/icon-01-default.svg"
+      data-default="assets/icon-01-default.svg"
+      data-active="assets/icon-01-active.svg"
+      alt="">
+    <audio src="assets/sound-01.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 2">
+    <img
+      src="assets/icon-02-default.svg"
+      data-default="assets/icon-02-default.svg"
+      data-active="assets/icon-02-active.svg"
+      alt="">
+    <audio src="assets/sound-02.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 3">
+    <img
+      src="assets/icon-03-default.svg"
+      data-default="assets/icon-03-default.svg"
+      data-active="assets/icon-03-active.svg"
+      alt="">
+    <audio src="assets/sound-03.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 4">
+    <img
+      src="assets/icon-04-default.svg"
+      data-default="assets/icon-04-default.svg"
+      data-active="assets/icon-04-active.svg"
+      alt="">
+    <audio src="assets/sound-04.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 5">
+    <img
+      src="assets/icon-05-default.svg"
+      data-default="assets/icon-05-default.svg"
+      data-active="assets/icon-05-active.svg"
+      alt="">
+    <audio src="assets/sound-05.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 6">
+    <img
+      src="assets/icon-06-default.svg"
+      data-default="assets/icon-06-default.svg"
+      data-active="assets/icon-06-active.svg"
+      alt="">
+    <audio src="assets/sound-06.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 7">
+    <img
+      src="assets/icon-07-default.svg"
+      data-default="assets/icon-07-default.svg"
+      data-active="assets/icon-07-active.svg"
+      alt="">
+    <audio src="assets/sound-07.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 8">
+    <img
+      src="assets/icon-08-default.svg"
+      data-default="assets/icon-08-default.svg"
+      data-active="assets/icon-08-active.svg"
+      alt="">
+    <audio src="assets/sound-08.mp3" preload="auto"></audio>
+  </button>
+
+  <button class="icon" aria-label="Icon 9">
+    <img
+      src="assets/icon-09-default.svg"
+      data-default="assets/icon-09-default.svg"
+      data-active="assets/icon-09-active.svg"
+      alt="">
+    <audio src="assets/sound-09.mp3" preload="auto"></audio>
+  </button>
+
+</div>
+
+<script>
+
+  const icons = document.querySelectorAll(".icon");
+
+  icons.forEach((icon) => {
+    const img = icon.querySelector("img");
+    const sound = icon.querySelector("audio");
+
+    const showActive = () => {
+      img.src = img.dataset.active;
+    };
+
+    const showDefault = () => {
+      img.src = img.dataset.default;
+    };
+
+    const playSound = () => {
+      sound.currentTime = 0; 
+      sound.play().catch(() => {
+   
+      });
+    };
+
+
+    icon.addEventListener("mouseenter", () => { 
+      
+      showActive();
+      playSound();
+    });
+
+    icon.addEventListener("mouseleave", () => {
+      showDefault();
+    });
+
+    icon.addEventListener("click", () => {
+      showActive();
+      playSound();
+    });
+
+
+</script>
+
+</body>
+</html>
